@@ -2,7 +2,7 @@ export const metadata = {
   title: "Home",
 };
 
-const Homepage = () => {
+const Homepage = async () => {
   return <>Prostore</>;
 };
 
