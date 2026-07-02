@@ -1,12 +1,10 @@
 "use server";
-import { PrismaClient } from "@/generated/prisma/client";
+import { prisma } from "@/db/prisma";
 import { adapter } from "@/db/constants";
 import { LATEST_PRODUCT_LIMIT } from "../constants";
 import { convertToPlainObject } from "../utils";
 
 export async function getLatestProducts() {
-  const prisma = new PrismaClient(adapter);
-
   const data = await prisma.product.findMany({
     take: LATEST_PRODUCT_LIMIT,
     orderBy: {
@@ -15,4 +13,12 @@ export async function getLatestProducts() {
   });
 
   return convertToPlainObject(data);
+}
+
+export async function getProductBySlug(slug: string) {
+  return await prisma.product.findFirst({
+    where: {
+      slug,
+    },
+  });
 }
