@@ -1,4 +1,3 @@
-import sampleData from "@/db/sample-data";
 import ProductList from "@/components/shared/product/productList";
 import { getLatestProducts } from "@/lib/actions/product.actions";
 
